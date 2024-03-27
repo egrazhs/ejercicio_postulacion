@@ -2,7 +2,7 @@
   <v-container>
     <div class="md:w-[500px] mx-auto">
       <h1 class="font-bold text-4xl my-2">Crear Nueva Tarea</h1>
-      <v-form @submit.prevent="submitForm">
+      <v-form @submit.prevent="submit_form">
         <v-text-field v-model="task.title" label="Título" required></v-text-field>
         <v-date-picker v-model="task.due_date" label="Fecha de vencimiento" width="450" color="primary" class="mx-auto"></v-date-picker>
         <v-textarea v-model="task.comments" label="Comentarios"></v-textarea>
@@ -43,7 +43,7 @@
 
   const show_warning = ref(false);
 
-  const submitForm = async () => {
+  const submit_form = async () => {
     if (!task.value.title) {
       show_warning.value = true;
       return;
@@ -66,7 +66,7 @@
       if (response.ok) {
         console.log('Tarea creada exitosamente');
         console.log(response);
-        /*Al parecer estoy teniendo un problema con el POST , se recibe un response con status de 202, se espera una status de 200*/
+        /*Al parecer estoy teniendo un problema con el POST , se recibe un response con status de 202, se espera un status de 200*/
         router.push('/');
       } else {
         console.error('Error al crear la tarea:', response.statusText);
