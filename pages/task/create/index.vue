@@ -4,12 +4,12 @@
       <h1 class="font-bold text-4xl my-2">Crear Nueva Tarea</h1>
       <v-form @submit.prevent="submitForm">
         <v-text-field v-model="task.title" label="Título" required></v-text-field>
-        <v-checkbox v-model="task.is_completed" label="Completado"></v-checkbox>
         <v-date-picker v-model="task.due_date" label="Fecha de vencimiento" width="450" color="primary" class="mx-auto"></v-date-picker>
         <v-textarea v-model="task.comments" label="Comentarios"></v-textarea>
         <v-textarea v-model="task.description" label="Descripción"></v-textarea>
         <v-text-field v-model="task.tags" label="Tags"></v-text-field>
-
+        <v-checkbox v-model="task.is_completed" label="Completado"></v-checkbox>
+        <v-alert v-model="show_warning" type="warning" dense class="mb-4">El campo Título es obligatorio.</v-alert>
         <v-btn type="submit" color="primary">Crear Tarea</v-btn>
       </v-form>
     </div>
@@ -40,9 +40,12 @@
   });
 
   const api_url = 'https://ecsdevapi.nextline.mx/vdev/tasks-challenge/tasks';
-  
+
+  const show_warning = ref(false);
+
   const submitForm = async () => {
     if (!task.value.title) {
+      show_warning.value = true;
       return;
     }
 
@@ -70,5 +73,7 @@
     } catch (error) {
       console.error('Error en la solicitud:', error);
     }
+
+    show_warning.value = false;
   }
 </script>

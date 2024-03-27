@@ -11,7 +11,7 @@
           <div class="flex bg-slate-50 hover:pl-[4px] p-1">
             <div class="w-[80%] flex">
               <div>
-                <v-checkbox disabled v-model="task.is_completed" color="success" hide-details @change="updateTask(index)" class="!inline"/>
+                <v-checkbox v-model="task.is_completed" color="success" hide-details disabled class="!inline" @change="updateTask(index)"/>
               </div>
               <div>
                 <!--{{task}}-->
