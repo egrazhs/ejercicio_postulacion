@@ -53,6 +53,7 @@ const editTask = async () => {
     if (response.ok) {
       console.log('Tarea editada con éxito')
       console.log(response);
+      /*Al parecer, al igual que con las peticiones de POST, con las peticiones PUT tambien recibo response con status 202, se espera 200, trabajando en ello.*/
       router.push(`/task/${route.params.id}`);
     } else {
       console.error('Error al editar la tarea:', response.statusText)

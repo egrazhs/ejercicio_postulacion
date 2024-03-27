@@ -66,6 +66,7 @@
       if (response.ok) {
         console.log('Tarea creada exitosamente');
         console.log(response);
+        /*Al parecer estoy teniendo un problema con el POST , se recibe un response con status de 202, se espera una status de 200*/
         router.push('/');
       } else {
         console.error('Error al crear la tarea:', response.statusText);
